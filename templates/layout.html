@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{ title }}</title>
+    </head>
+    <body>
+        <nav>
+            <li><a href="{{ url_for('index') }}">Home</a></li>
+            <li><a href="{{ url_for('more') }}">Access Database</a></li>
+        </nav>
+        <h1>{{ title }}</h1>
+        {% block section %}{% endblock %}
+    </body>
+</html>
