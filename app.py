@@ -317,3 +317,6 @@ def del_trans():
     except:
         return "ERROR DELETING!"
     return redirect(url_for('.more'))
+
+if __name__=="__main__":
+    app.run()
