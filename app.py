@@ -105,12 +105,23 @@ def more():
 def ref_types():
     code = request.form.get("code")
     desc = request.form.get("desc")
-    try:
-        db.execute("INSERT INTO ref_types_of_business(Type_of_Business_Code, Type_of_Business_Desc) VALUES (:code, :desc)",
-                    {"code" : code, "desc" : desc})
-        db.commit()
-    except:
-        return "ERROR INSERTING!"
+    z = db.execute("SELECT Type_of_Business_Code FROM ref_types_of_business WHERE Type_of_Business_Code=:code", {"code":code})
+    i = []
+    get_values(z, i)
+    if(i == []):
+        try:
+            db.execute("INSERT INTO ref_types_of_business(Type_of_Business_Code, Type_of_Business_Desc) VALUES (:code, :desc)",
+                        {"code" : code, "desc" : desc})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
+    else:
+        try:
+            db.execute("UPDATE ref_types_of_business SET Type_of_Business_Code=:code, Type_of_Business_Desc=:desc WHERE Type_of_Business_Code=:code",
+                        {"code" : code, "desc" : desc})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
     return redirect(url_for('.more'))
 
 @app.route("/addcust", methods=["POST"])
@@ -120,12 +131,23 @@ def customers():
     name = request.form.get("name")
     address = request.form.get("address")
     desc = request.form.get("desc")
-    try:
-        db.execute("INSERT INTO customers(Customer_ID, Type_of_Business_Code, Customer_Name, Customer_Address, Other_Details) VALUES (:ids, :code, :name, :address, :desc)",
-                    {"ids": ids, "code" : code, "name" : name, "address" : address,"desc" : desc})
-        db.commit()
-    except:
-        return "ERROR INSERTING!"
+    z = db.execute("SELECT Customer_ID FROM customers WHERE Customer_ID=:ids", {"ids":ids})
+    i = []
+    get_values(z, i)
+    if(i == []):
+        try:
+            db.execute("INSERT INTO customers(Customer_ID, Type_of_Business_Code, Customer_Name, Customer_Address, Other_Details) VALUES (:ids, :code, :name, :address, :desc)",
+                        {"ids": ids, "code" : code, "name" : name, "address" : address,"desc" : desc})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
+    else:
+        try:
+            db.execute("UPDATE customers SET Customer_ID=:ids, Type_of_Business_Code=:code, Customer_Name=:name, Customer_Address=:address, Other_Details=:desc WHERE Customer_ID=:ids",
+                        {"ids": ids, "code" : code, "name" : name, "address" : address,"desc" : desc})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"      
     return redirect(url_for('.more'))
 
 @app.route("/addloc", methods=["POST"])
@@ -133,12 +155,23 @@ def locations():
     code = request.form.get("code")
     name = request.form.get("name")
     desc = request.form.get("desc")
-    try:
-        db.execute("INSERT INTO locations(Location_Code, Location_Name, Location_Description) VALUES (:code, :name, :desc)",
-                    {"code" : code, "name" : name, "desc" : desc})
-        db.commit()
-    except:
-        return "ERROR INSERTING!"
+    z = db.execute("SELECT Location_Code FROM locations WHERE Location_Code=:code", {"code":code})
+    i = []
+    get_values(z, i)
+    if(i == []):
+        try:
+            db.execute("INSERT INTO locations(Location_Code, Location_Name, Location_Description) VALUES (:code, :name, :desc)",
+                        {"code" : code, "name" : name, "desc" : desc})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
+    else:
+        try:
+            db.execute("UPDATE locations SET Location_Code=:code, Location_Name=:name, Location_Description=:desc WHERE Location_Code=:code",
+                        {"code" : code, "name" : name, "desc" : desc})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
     return redirect(url_for('.more'))
 
 @app.route("/addprod", methods=["POST"])
@@ -147,24 +180,46 @@ def products():
     name = request.form.get("name")
     desc = request.form.get("desc")
     oth = request.form.get("oth")
-    try:
-        db.execute("INSERT INTO Products(Product_ID, Product_Name, Product_Description, Other_Details) VALUES (:code, :name, :desc, :oth)",
-                    {"code" : code, "name" : name, "desc" : desc, "oth" : oth})
-        db.commit()
-    except:
-        return "ERROR INSERTING!"
+    z = db.execute("SELECT Product_ID FROM Products WHERE Product_ID=:code", {"code":code})
+    i = []
+    get_values(z, i)
+    if(i == []):
+        try:
+            db.execute("INSERT INTO Products(Product_ID, Product_Name, Product_Description, Other_Details) VALUES (:code, :name, :desc, :oth)",
+                        {"code" : code, "name" : name, "desc" : desc, "oth" : oth})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
+    else:
+        try:
+            db.execute("UPDATE Products SET Product_ID=:code, Product_Name=:name, Product_Description=:desc, Other_Details=:oth WHERE Product_ID=:code",
+                        {"code" : code, "name" : name, "desc" : desc, "oth" : oth})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
     return redirect(url_for('.more'))
 
 @app.route("/addtranstypes", methods=["POST"])
 def transaction_types():
     code = request.form.get("code")
     name = request.form.get("name")
-    try:
-        db.execute("INSERT INTO Ref_Transaction_Types(Transaction_Type_Code, Transaction_Type_Description) VALUES (:code, :name)",
-                    {"code" : code, "name" : name})
-        db.commit()
-    except:
-        return "ERROR INSERTING!"
+    z = db.execute("SELECT Transaction_Type_Code FROM Ref_Transaction_Types WHERE Transaction_Type_Code=:code", {"code":code})
+    i = []
+    get_values(z, i)
+    if(i == []):
+        try:
+            db.execute("INSERT INTO Ref_Transaction_Types(Transaction_Type_Code, Transaction_Type_Description) VALUES (:code, :name)",
+                        {"code" : code, "name" : name})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
+    else:
+        try:
+            db.execute("UPDATE Ref_Transaction_Types SET Transaction_Type_Code=:code, Transaction_Type_Description=:name WHERE Transaction_Type_Code=:code",
+                        {"code" : code, "name" : name})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
     return redirect(url_for('.more'))
 
 @app.route("/addtrans", methods=["POST"])
@@ -178,9 +233,23 @@ def transactions():
     amount = int(request.form.get("amount"))
     count = int(request.form.get("count"))
     oth = request.form.get("oth")
-    db.execute("INSERT INTO Transactions(Transaction_ID, Customer_ID, Location_Code, Product_ID, Transaction_Type_Code, Transaction_Date, Amount, Count, Other_Details) VALUES (:trans_id, :cust_id, :loc_code, :prod_id, :type_code, :trans_date, :amount, :count, :oth)",
-                    {"trans_id":trans_id, "cust_id":cust_id, "loc_code":loc_code, "prod_id":prod_id, "type_code":type_code, "trans_date":trans_date, "amount":amount, "count":count, "oth":oth})
-    db.commit()
+    z = db.execute("SELECT Transaction_ID FROM Transactions WHERE Transaction_ID=:trans_id", {"trans_id":trans_id})
+    i = []
+    get_values(z, i)
+    if(i == []):
+        try:
+            db.execute("INSERT INTO Transactions(Transaction_ID, Customer_ID, Location_Code, Product_ID, Transaction_Type_Code, Transaction_Date, Amount, Count, Other_Details) VALUES (:trans_id, :cust_id, :loc_code, :prod_id, :type_code, :trans_date, :amount, :count, :oth)",
+                        {"trans_id":trans_id, "cust_id":cust_id, "loc_code":loc_code, "prod_id":prod_id, "type_code":type_code, "trans_date":trans_date, "amount":amount, "count":count, "oth":oth})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
+    else:
+        try:
+            db.execute("UPDATE Transactions SET Transaction_ID=:trans_id, Customer_ID=:cust_id, Location_Code=:loc_code, Product_ID=:prod_id, Transaction_Type_Code=:type_code, Transaction_Date=:trans_date, Amount=:amount, Count=:count, Other_Details=:oth WHERE Transaction_ID=:trans_id",
+                        {"trans_id":trans_id, "cust_id":cust_id, "loc_code":loc_code, "prod_id":prod_id, "type_code":type_code, "trans_date":trans_date, "amount":amount, "count":count, "oth":oth})
+            db.commit()
+        except:
+            return "ERROR INSERTING!"
     return redirect(url_for('.more'))
 
 @app.route("/delref", methods=["POST"])

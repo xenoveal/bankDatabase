@@ -10,7 +10,7 @@
             <h5>Add to Database</h5>
             <input type="text", name="code", placeholder="Type_of_Business_Code">
             <input type="text", name="desc", placeholder="Type_of_Business_Desc">
-            <button>Add</button>
+            <button>Add/Modify</button>
         </form>
         <table>
             <thead>
@@ -42,7 +42,7 @@
             <input type="text", name="name", placeholder="Customer_Name">
             <input type="text", name="address", placeholder="Customer_Address">
             <input type="text", name="desc", placeholder="Other_Details">
-            <button>Add</button>
+            <button>Add/Modify</button>
         </form>
         <table>
             <thead>
@@ -78,7 +78,7 @@
             <input type="text", name="code", placeholder="Location_Code">
             <input type="text", name="name", placeholder="Location_Name">
             <input type="text", name="desc", placeholder="Location_Description">
-            <button>Add</button>
+            <button>Add/Modify</button>
         </form>
         <table>
             <thead>
@@ -111,7 +111,7 @@
             <input type="text", name="name", placeholder="Product_Name">
             <input type="text", name="desc", placeholder="Product_Description">
             <input type="text", name="oth", placeholder="Other_Details">
-            <button>Add</button>
+            <button>Add/Modify</button>
         </form>
         <table>
             <thead>
@@ -144,7 +144,7 @@
             <h5>Add to Database</h5>
             <input type="text", name="code", placeholder="Transactions_Type_Code">
             <input type="text", name="name", placeholder="Transaction_Type_Descriptipn">
-            <button>Add</button>
+            <button>Add/Modify</button>
         </form>
         <table>
             <thead>
@@ -180,7 +180,7 @@
             <input type="text", name="amount", placeholder="Amount">
             <input type="text", name="count", placeholder="Count">
             <input type="text", name="oth", placeholder="Other_Details">
-            <button>Add</button>
+            <button>Add/Modify</button>
         </form>
         <table>
             <thead>
@@ -202,7 +202,6 @@
                     <td>{{ row.customer_id }}</td>
                     <td>{{ row.location_code }}</td>
                     <td>{{ row.product_id }}</td>
-                    <td>{{ row.transaction_id }}</td>
                     <td>{{ row.transaction_type_code }}</td>
                     <td>{{ row.transaction_date }}</td>
                     <td>{{ row.amount }}</td>
