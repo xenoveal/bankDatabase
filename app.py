@@ -112,16 +112,15 @@ def ref_types():
         try:
             db.execute("INSERT INTO ref_types_of_business(Type_of_Business_Code, Type_of_Business_Desc) VALUES (:code, :desc)",
                         {"code" : code, "desc" : desc})
-            db.commit()
         except:
             return "ERROR INSERTING!"
     else:
         try:
             db.execute("UPDATE ref_types_of_business SET Type_of_Business_Code=:code, Type_of_Business_Desc=:desc WHERE Type_of_Business_Code=:code",
                         {"code" : code, "desc" : desc})
-            db.commit()
         except:
             return "ERROR INSERTING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 @app.route("/addcust", methods=["POST"])
@@ -138,16 +137,15 @@ def customers():
         try:
             db.execute("INSERT INTO customers(Customer_ID, Type_of_Business_Code, Customer_Name, Customer_Address, Other_Details) VALUES (:ids, :code, :name, :address, :desc)",
                         {"ids": ids, "code" : code, "name" : name, "address" : address,"desc" : desc})
-            db.commit()
         except:
             return "ERROR INSERTING!"
     else:
         try:
             db.execute("UPDATE customers SET Customer_ID=:ids, Type_of_Business_Code=:code, Customer_Name=:name, Customer_Address=:address, Other_Details=:desc WHERE Customer_ID=:ids",
                         {"ids": ids, "code" : code, "name" : name, "address" : address,"desc" : desc})
-            db.commit()
         except:
-            return "ERROR INSERTING!"      
+            return "ERROR INSERTING!"    
+    db.commit()  
     return redirect(url_for('.more'))
 
 @app.route("/addloc", methods=["POST"])
@@ -162,16 +160,15 @@ def locations():
         try:
             db.execute("INSERT INTO locations(Location_Code, Location_Name, Location_Description) VALUES (:code, :name, :desc)",
                         {"code" : code, "name" : name, "desc" : desc})
-            db.commit()
         except:
             return "ERROR INSERTING!"
     else:
         try:
             db.execute("UPDATE locations SET Location_Code=:code, Location_Name=:name, Location_Description=:desc WHERE Location_Code=:code",
                         {"code" : code, "name" : name, "desc" : desc})
-            db.commit()
         except:
             return "ERROR INSERTING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 @app.route("/addprod", methods=["POST"])
@@ -187,16 +184,15 @@ def products():
         try:
             db.execute("INSERT INTO Products(Product_ID, Product_Name, Product_Description, Other_Details) VALUES (:code, :name, :desc, :oth)",
                         {"code" : code, "name" : name, "desc" : desc, "oth" : oth})
-            db.commit()
         except:
             return "ERROR INSERTING!"
     else:
         try:
             db.execute("UPDATE Products SET Product_ID=:code, Product_Name=:name, Product_Description=:desc, Other_Details=:oth WHERE Product_ID=:code",
                         {"code" : code, "name" : name, "desc" : desc, "oth" : oth})
-            db.commit()
         except:
             return "ERROR INSERTING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 @app.route("/addtranstypes", methods=["POST"])
@@ -210,16 +206,15 @@ def transaction_types():
         try:
             db.execute("INSERT INTO Ref_Transaction_Types(Transaction_Type_Code, Transaction_Type_Description) VALUES (:code, :name)",
                         {"code" : code, "name" : name})
-            db.commit()
         except:
             return "ERROR INSERTING!"
     else:
         try:
             db.execute("UPDATE Ref_Transaction_Types SET Transaction_Type_Code=:code, Transaction_Type_Description=:name WHERE Transaction_Type_Code=:code",
                         {"code" : code, "name" : name})
-            db.commit()
         except:
             return "ERROR INSERTING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 @app.route("/addtrans", methods=["POST"])
@@ -240,16 +235,15 @@ def transactions():
         try:
             db.execute("INSERT INTO Transactions(Transaction_ID, Customer_ID, Location_Code, Product_ID, Transaction_Type_Code, Transaction_Date, Amount, Count, Other_Details) VALUES (:trans_id, :cust_id, :loc_code, :prod_id, :type_code, :trans_date, :amount, :count, :oth)",
                         {"trans_id":trans_id, "cust_id":cust_id, "loc_code":loc_code, "prod_id":prod_id, "type_code":type_code, "trans_date":trans_date, "amount":amount, "count":count, "oth":oth})
-            db.commit()
         except:
             return "ERROR INSERTING!"
     else:
         try:
             db.execute("UPDATE Transactions SET Transaction_ID=:trans_id, Customer_ID=:cust_id, Location_Code=:loc_code, Product_ID=:prod_id, Transaction_Type_Code=:type_code, Transaction_Date=:trans_date, Amount=:amount, Count=:count, Other_Details=:oth WHERE Transaction_ID=:trans_id",
                         {"trans_id":trans_id, "cust_id":cust_id, "loc_code":loc_code, "prod_id":prod_id, "type_code":type_code, "trans_date":trans_date, "amount":amount, "count":count, "oth":oth})
-            db.commit()
         except:
             return "ERROR INSERTING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 @app.route("/delref", methods=["POST"])
@@ -258,9 +252,9 @@ def del_ref_types():
     try:
         command = "DELETE FROM Ref_Types_of_Business WHERE Type_of_Business_Code='{to_delete}'".format(to_delete=to_delete)
         db.execute(command)
-        db.commit()
     except:
         return "ERROR DELETING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 @app.route("/delcust", methods=["POST"])
@@ -269,9 +263,9 @@ def del_customers():
     try:
         command = "DELETE FROM Customers WHERE Customer_ID='{to_delete}'".format(to_delete=to_delete)
         db.execute(command)
-        db.commit()
     except:
         return "ERROR DELETING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 @app.route("/delloc", methods=["POST"])
@@ -280,9 +274,9 @@ def del_loc():
     try:
         command = "DELETE FROM Locations WHERE Location_Code='{to_delete}'".format(to_delete=to_delete)
         db.execute(command)
-        db.commit()
     except:
         return "ERROR DELETING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 @app.route("/delprod", methods=["POST"])
@@ -291,20 +285,20 @@ def del_prod():
     try:
         command = "DELETE FROM Products WHERE Product_ID='{to_delete}'".format(to_delete=to_delete)
         db.execute(command)
-        db.commit()
     except:
         return "ERROR DELETING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 @app.route("/deltranstypes", methods=["POST"])
 def del_trans_types():
     to_delete = str(request.form.get("delete"))
     try:
-        command = "DELETE FROM Ref_Transactions_Types WHERE Transaction_Type_Code='{to_delete}'".format(to_delete=to_delete)
+        command = "DELETE FROM Ref_Transaction_Types WHERE Transaction_Type_Code='{to_delete}'".format(to_delete=to_delete)
         db.execute(command)
-        db.commit()
     except:
         return "ERROR DELETING!"
+    db.commit()
     return redirect(url_for('.more'))
     
 @app.route("/deltrans", methods=["POST"])
@@ -313,9 +307,9 @@ def del_trans():
     try:
         command = "DELETE FROM Transactions WHERE Transaction_ID='{to_delete}'".format(to_delete=to_delete)
         db.execute(command)
-        db.commit()
     except:
         return "ERROR DELETING!"
+    db.commit()
     return redirect(url_for('.more'))
 
 if __name__=="__main__":

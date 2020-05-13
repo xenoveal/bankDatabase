@@ -142,13 +142,13 @@
         <h4>Ref_Types_of_Business</h4>
         <form action="{{ url_for('transaction_types') }}", method="POST">
             <h5>Add to Database</h5>
-            <input type="text", name="code", placeholder="Transactions_Type_Code">
+            <input type="text", name="code", placeholder="Transaction_Type_Code">
             <input type="text", name="name", placeholder="Transaction_Type_Descriptipn">
             <button>Add/Modify</button>
         </form>
         <table>
             <thead>
-                <th>Transactions_Type_Code</th>
+                <th>Transaction_Type_Code</th>
                 <th>Transaction_Type_Descriptipn</th>
                 <th>DELETE</th>
             </thead>
@@ -158,7 +158,7 @@
                     <td>{{ row.transaction_type_code }}</td>
                     <td>{{ row.transaction_type_description }}</td>
                     <td><form action="{{ url_for('del_trans_types') }}", method="POST">
-                        <button><input type="hidden", value="{{ row.transactions_type_code }}", name="delete">
+                        <button><input type="hidden", value="{{ row.transaction_type_code }}", name="delete">
                         Delete
                         </button>
                     </form></td>
