@@ -9,13 +9,13 @@
 		a:visited {
   		  text-decoration: none;
 		}	
-		div.fixedHome {
-  			position: absolute;
+		div.staticHome {
+  			position: static;
   			top: 0vw;
   			right: 18vw;
 		}
-		div.fixedDB {
-  			position: absolute;
+		div.staticDB {
+  			position: static;
   			top: 0vw;
   			right: 3vw;
 		}
@@ -23,8 +23,8 @@
     </head>
     <body>
         <nav>
-            <div class="fixedHome"><p style="font-family:'Calibri'"><a href="{{ url_for('index') }}" h1 style="font-size:2vw">Home</h1></a></p></div>
-            <div class="fixedDB"><p style="font-family:'Calibri'"><a href="{{ url_for('more') }}" h1 style="font-size:2vw">Access Database</h1></a></p></div>
+            <div class="staticHome"><p style="font-family:'Calibri'"><a href="{{ url_for('index') }}" h1 style="font-size:2vw">Home</h1></a></p></div>
+            <div class="staticDB"><p style="font-family:'Calibri'"><a href="{{ url_for('more') }}" h1 style="font-size:2vw">Access Database</h1></a></p></div>
         </nav>
         {% block section %}{% endblock %}
     </body>
