@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        div.header {
+            position: fixed;
+            top: -2vw;
+            left: 1vw;
+        }
+
+        div.welcome {
+            position: fixed;
+            top: 23vw;
+            left: 11vw;
+            text-align: center;
+            width: 30vw;
+        }
+
+        .button {
+          position: fixed;
+          top: 40vw;
+          left: 22vw;
+          border: none;
+          color: white;
+          padding: 1px 10px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 14px;
+          margin: 4px 2px;
+          transition-duration: 0.4s;
+          cursor: pointer;
+        }
+
+        .button1 {
+          border-radius: 8px;
+          background-color: #328736; 
+          color: black; 
+          border: 2px solid #4CAF50;
+        }
+
+        .button1:hover {
+          background-color: #4CAF50;
+          color: #328736;
+        }
+
+        </style>
+    </head>
+
+{% extends "layout.html" %}
+
+{% block section %}
+    <div class="header"><h3 style="font-family:'Arial';font-size:2.5vw;color:teal;">BANK DATABASE MANAGEMENT</h3></div>
+    <body>
+    <style>
+        body {
+            background-image: url( static/landing.png );
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-position: fixed;
+        }
+
+        div.login {
+            position: fixed;
+            top: 27vw;
+            left: 10vw;
+        }
+
+        div.register {
+            position: fixed;
+            top: 32vw;
+            left: 10vw;
+        }
+    </style>
+
+
+    {% if not condition %}
+        {% if try_login %}
+            <h4 style="color: red;">WRONG USERNAME/PASSWORD</h4>
+        {% endif %}
+        <div class="login"><h4>LOGIN</h4>
+        <form action="{{ url_for('login') }}", method="POST">
+            <input type="text", name="username", placeholder="username">
+            <input type="password", name="password", placeholder="password">
+            <button>Submit</button>
+        </form></div>
+        <br>
+        <div class="register"><h4>REGISTER</h4>
+        <form action="{{ url_for('register') }}", method="POST">
+            <input type="text", name="username", placeholder="username">
+            <input type="password", name="password", placeholder="password">
+            <input type="password", name="password2", placeholder="repeat password">
+            <button>Submit</button>
+        </form></div>
+        <br>
+        <br>
+    {% else %}
+        <div class="welcome"><h3 style="font-family:'Serif';font-size:4vw;color:#9c790a;">Welcome back!</h3></div>
+        <button class="button button1"><a href="{{ url_for('logout') }}"><h1 style="color: white;"><b>LOGOUT</b></h1></a></button>
+    {% endif %}
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        a:link {
+  		  text-decoration: none;
+		}
+
+		a:visited {
+  		  text-decoration: none;
+		}	
+		div.fixedHome {
+  			position: absolute;
+  			top: 0vw;
+  			right: 18vw;
+		}
+		div.fixedDB {
+  			position: absolute;
+  			top: 0vw;
+  			right: 3vw;
+		}
+		</style>
+    </head>
+    <body>
+        <nav>
+            <div class="fixedHome"><p style="font-family:'Calibri'"><a href="{{ url_for('index') }}" h1 style="font-size:2vw">Home</h1></a></p></div>
+            <div class="fixedDB"><p style="font-family:'Calibri'"><a href="{{ url_for('more') }}" h1 style="font-size:2vw">Access Database</h1></a></p></div>
+        </nav>
+        {% block section %}{% endblock %}
+    </body>
+</html>

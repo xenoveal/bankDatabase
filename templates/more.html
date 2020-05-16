@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+                div.fixed {
+                position: fixed;
+                top: -2vw;
+                left: 1vw;
+                }
+                body {font-family: Arial;}
+
+                table { 
+                border-collapse: collapse; 
+                } 
+                th { 
+                    background-color:green; 
+                    Color:white; 
+                } 
+                th, td { 
+                    width:150px; 
+                    text-align:center; 
+                    border:1px solid black; 
+                    padding:5px 
+                  
+                } 
+                .table { 
+                    border-right:hidden; 
+                } 
+                .dbtable { 
+                    border-collapse:separate; 
+                    border-spacing:0 15px; 
+                } 
+                h1 { 
+                    color:green; 
+                } 
+
+                /* Style the tab */
+                .tab {
+                  position: fixed;
+                  top: 5vw;
+                  left: 30vw;
+                  overflow: hidden;
+                  border: 1px solid #ccc;
+                  background-color: #71d8db;
+                }
+
+                /* Style the buttons inside the tab */
+                .tab button {
+                  background-color: inherit;
+                  float: left;
+                  border: none;
+                  outline: none;
+                  cursor: pointer;
+                  padding: 14px 16px;
+                  transition: 0.3s;
+                  font-size: 17px;
+                }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                  background-color: #ddd;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                  background-color: #ccc;
+                }
+
+                /* Style the tab content */
+                .tabcontent {
+                  position: fixed;
+                  top: 15vw;
+                  left: 50%;
+                  margin-right: -50%;
+                  transform: translate(-50%, -50%);
+                  display: none;
+                  padding: 6px 12px;
+                  border: 1px solid #ccc;
+                  border-top: none;
+                }
+
+                /* Style the close button */
+                .topright {
+                  float: right;
+                  cursor: pointer;
+                  font-size: 28px;
+                }
+
+                .topright:hover {color: red;}
+            </style>
+        </head>
+
+{% extends "layout.html" %}
+
+{% block section %}
+    <div class="fixed"><h3 style="font-family:'Arial';font-size:2.5vw;color:teal;">BANK DATABASE MANAGEMENT</h3></div>
+    <body>
+    <style>
+        body {
+            background-image: url( static/Tabs.png );
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-position: fixed;
+        }
+    </style>
+    {% if condition %}
+
+<body>
+
+<div class="tab">
+  <button class="tablinks" onclick="dbtab(event, 'ref_typesTab')" id="defaultOpen">Business Types</button>
+  <button class="tablinks" onclick="dbtab(event, 'customersTab')">Customers</button>
+  <button class="tablinks" onclick="dbtab(event, 'locationsTab')">Locations</button>
+  <button class="tablinks" onclick="dbtab(event, 'productsTab')">Products</button>
+  <button class="tablinks" onclick="dbtab(event, 'trans_typesTab')">Transaction Types</button>
+  <button class="tablinks" onclick="dbtab(event, 'transactionsTab')">Transactions</button>
+</div>
+
+<div id="ref_typesTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="ref_types">
+        <h4>Business Types</h4>
+        <table>
+            <thead>
+                <th>Business Code</th>
+                <th>Business Description</th>
+                <th>DELETE</th>
+            </thead>
+            <tbody>
+                {% for row in ref_types_values %}
+                <tr>
+                    <td>{{ row.type_of_business_code }}</td>
+                    <td>{{ row.type_of_business_desc }}</td>
+                    <td><form action="{{ url_for('del_ref_types') }}", method="POST">
+                        <button><input type="hidden", value="{{ row.type_of_business_code }}", name="delete">
+                        Delete
+                        </button>
+                    </form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{{ url_for('ref_types') }}", method="POST">
+            <h5>Add to Database</h5>
+            <input type="text", name="code", placeholder="Type_of_Business_Code">
+            <input type="text", name="desc", placeholder="Type_of_Business_Desc">
+            <button>Add/Modify</button>
+        </form>
+    </div>
+</div>
+
+<div id="customersTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="customers">
+        <h4>Customers</h4>
+        <table>
+            <thead>
+                <th>Customer ID</th>
+                <th>Business Description</th>
+                <th>Customer Name</th>
+                <th>Customer Address</th>
+                <th>Other Details</th>
+                <th>DELETE</th>
+            </thead>
+            <tbody>
+                {% for row in customers_values %}
+                <tr>
+                    <td>{{ row.customer_id }}</td>
+                    <td>{{ row.type_of_business_code }}</td>
+                    <td>{{ row.customer_name }}</td>
+                    <td>{{ row.customer_address }}</td>
+                    <td>{{ row.other_details }}</td>
+                    <td><form action="{{ url_for('del_customers') }}", method="POST">
+                        <button><input type="hidden", value="{{ row.customer_id }}", name="delete">
+                        Delete
+                        </button>
+                    </form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{{ url_for('customers') }}", method="POST">
+            <h5>Add to Database</h5>
+            <input type="text", name="id", placeholder="Customer_ID">   
+            <input type="text", name="code", placeholder="Type_of_Business_Code">
+            <input type="text", name="name", placeholder="Customer_Name">
+            <input type="text", name="address", placeholder="Customer_Address">
+            <input type="text", name="desc", placeholder="Other_Details">
+            <button>Add/Modify</button>
+        </form>
+    </div>
+</div>
+
+<div id="locationsTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="locations">
+        <h4>Locations</h4>
+        <table>
+            <thead>
+                <th>Location Code</th>
+                <th>Location Name</th>
+                <th>Location Description</th>
+                <th>DELETE</th>
+            </thead>
+            <tbody>
+                {% for row in locations_values %}
+                <tr>
+                    <td>{{ row.location_code }}</td>
+                    <td>{{ row.location_name }}</td>
+                    <td>{{ row.location_description }}</td>
+                    <td><form action="{{ url_for('del_loc') }}", method="POST">
+                        <button><input type="hidden", value="{{ row.location_code }}", name="delete">
+                        Delete
+                        </button>
+                    </form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{{ url_for('locations') }}", method="POST">
+            <h5>Add to Database</h5>
+            <input type="text", name="code", placeholder="Location_Code">
+            <input type="text", name="name", placeholder="Location_Name">
+            <input type="text", name="desc", placeholder="Location_Description">
+            <button>Add/Modify</button>
+        </form>
+    </div>
+</div>
+
+<div id="productsTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="products">
+        <h4>Products</h4>
+        <table>
+            <thead>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Other Details</th>
+                <th>DELETE</th>
+            </thead>
+            <tbody>
+                {% for row in products_values %}
+                <tr>
+                    <td>{{ row.product_id }}</td>
+                    <td>{{ row.product_name }}</td>
+                    <td>{{ row.product_description }}</td>
+                    <td>{{ row.other_details }}</td>
+                    <td><form action="{{ url_for('del_prod') }}", method="POST">
+                        <button><input type="hidden", value="{{ row.product_id }}", name="delete">
+                        Delete
+                        </button>
+                    </form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{{ url_for('products') }}", method="POST">
+            <h5>Add to Database</h5>
+            <input type="text", name="code", placeholder="Product_ID">
+            <input type="text", name="name", placeholder="Product_Name">
+            <input type="text", name="desc", placeholder="Product_Description">
+            <input type="text", name="oth", placeholder="Other_Details">
+            <button>Add/Modify</button>
+        </form>
+    </div>
+</div>
+
+<div id="trans_typesTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="trans_types">
+        <h4>Ref_Types_of_Business</h4>
+        <table>
+            <thead>
+                <th>Transaction Code</th>
+                <th>Transaction Descriptipn</th>
+                <th>DELETE</th>
+            </thead>
+            <tbody>
+                {% for row in trans_types_values %}
+                <tr>
+                    <td>{{ row.transaction_type_code }}</td>
+                    <td>{{ row.transaction_type_description }}</td>
+                    <td><form action="{{ url_for('del_trans_types') }}", method="POST">
+                        <button><input type="hidden", value="{{ row.transaction_type_code }}", name="delete">
+                        Delete
+                        </button>
+                    </form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{{ url_for('transaction_types') }}", method="POST">
+            <h5>Add to Database</h5>
+            <input type="text", name="code", placeholder="Transaction_Type_Code">
+            <input type="text", name="name", placeholder="Transaction_Type_Descriptipn">
+            <button>Add/Modify</button>
+        </form>
+    </div>
+</div>
+
+<div id="transactionsTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="transactions">
+        <h4>Transactions</h4>
+        <table>
+            <thead>
+                <th>Transaction_ID</th>
+                <th>Customer_ID</th>
+                <th>Location_Code</th>
+                <th>Product_ID</th>
+                <th>Transaction_Type_Code</th>
+                <th>Transaction_Date</th>
+                <th>Amount</th>
+                <th>Count</th>
+                <th>Other_Details</th>
+                <th>DELETE</th>
+            </thead>
+            <tbody>
+                {% for row in trans_values %}
+                <tr>
+                    <td>{{ row.transaction_id }}</td>
+                    <td>{{ row.customer_id }}</td>
+                    <td>{{ row.location_code }}</td>
+                    <td>{{ row.product_id }}</td>
+                    <td>{{ row.transaction_type_code }}</td>
+                    <td>{{ row.transaction_date }}</td>
+                    <td>{{ row.amount }}</td>
+                    <td>{{ row.count }}</td>
+                    <td>{{ row.other_details }}</td>
+                    <td><form action="{{ url_for('del_trans') }}", method="POST">
+                        <button><input type="hidden", value="{{ row.transaction_id }}", name="delete">
+                        Delete
+                        </button>
+                    </form></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="{{ url_for('transactions') }}", method="POST">
+            <h5>Add to Database</h5>
+            <input type="text", name="trans_id", placeholder="Transaction_ID">
+            <input type="text", name="cust_id", placeholder="Customer_ID">
+            <input type="text", name="loc_code", placeholder="Location_Code">
+            <input type="text", name="prod_id", placeholder="Product_ID">
+            <input type="text", name="type_code", placeholder="Transactions_Type_Code">
+            <input type="text", name="trans_date", placeholder="Transaction_Date (yyyy-mm-dd)">
+            <input type="text", name="amount", placeholder="Amount">
+            <input type="text", name="count", placeholder="Count">
+            <input type="text", name="oth", placeholder="Other_Details">
+            <button>Add/Modify</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function dbtab(evt, databaseTab) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(databaseTab).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+</body>
+</html> 
+
+{% endif %}
+{% endblock %}
