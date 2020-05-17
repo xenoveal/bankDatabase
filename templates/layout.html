@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
         <style>
         a:link {
   		  text-decoration: none;
@@ -9,22 +10,22 @@
 		a:visited {
   		  text-decoration: none;
 		}	
-		div.staticHome {
-  			position: static;
-  			top: 0vw;
-  			right: 18vw;
+		div.absoluteHome {
+  			position: fixed;
+  			top: 2px;
+  			right: 400px;
 		}
-		div.staticDB {
-  			position: static;
-  			top: 0vw;
-  			right: 3vw;
+		div.absoluteDB {
+  			position: fixed;
+  			top: 2px;
+  			right: 70px;
 		}
 		</style>
     </head>
     <body>
         <nav>
-            <div class="staticHome"><p style="font-family:'Calibri'"><a href="{{ url_for('index') }}" h1 style="font-size:2vw">Home</h1></a></p></div>
-            <div class="staticDB"><p style="font-family:'Calibri'"><a href="{{ url_for('more') }}" h1 style="font-size:2vw">Access Database</h1></a></p></div>
+            <div class="absoluteHome"><p style="font-family:'Calibri'"><a href="{{ url_for('index') }}" h1 style="font-size:2vw">Home</h1></a></p></div>
+            <div class="absoluteDB"><p style="font-family:'Calibri'"><a href="{{ url_for('more') }}" h1 style="font-size:2vw">Access Database</h1></a></p></div>
         </nav>
         {% block section %}{% endblock %}
     </body>
