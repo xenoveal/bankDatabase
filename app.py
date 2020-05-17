@@ -63,7 +63,7 @@ def register():
     db.execute("INSERT INTO users(USERNAME, PASSWORD) VALUES (:username, :password)",
                 {"username" : username, "password" : password})
     db.commit()
-    return index()
+    return redirect(url_for('.index'))
 
 def get_values(before, after):
     for row in before:
