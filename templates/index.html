@@ -85,7 +85,7 @@
 
     {% if not condition %}
         {% if try_login %}
-            <div class="error"><h4 style="color: red;">WRONG USERNAME/PASSWORD!</h4></div>
+        <div class="error"><h4 style="color: red;">WRONG USERNAME/PASSWORD!</h4></div>
         {% endif %}
         <div class="login"><p style="font-family:'Serif';font-size:1.2vw;color:#9c790a;"><b>LOGIN</b></p>
         <form action="{{ url_for('login') }}", method="POST">
