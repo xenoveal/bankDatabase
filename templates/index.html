@@ -16,6 +16,14 @@
             width: 30vw;
         }
 
+        div.error {
+            position: absolute;
+            top: 43vw;
+            left: 15vw;
+            text-align: center;
+            width: 20vw;
+        }
+
         .button {
           position: absolute;
           top: 40vw;
@@ -63,13 +71,13 @@
 
         div.login {
             position: absolute;
-            top: 27vw;
+            top: 21vw;
             left: 10vw;
         }
 
         div.register {
             position: absolute;
-            top: 32vw;
+            top: 30vw;
             left: 10vw;
         }
     </style>
@@ -77,20 +85,20 @@
 
     {% if not condition %}
         {% if try_login %}
-            <h4 style="color: red;">WRONG USERNAME/PASSWORD</h4>
+            <div class="error"><h4 style="color: red;">WRONG USERNAME/PASSWORD!</h4></div>
         {% endif %}
-        <div class="login"><h4>LOGIN</h4>
+        <div class="login"><p style="font-family:'Serif';font-size:1.2vw;color:#9c790a;"><b>LOGIN</b></p>
         <form action="{{ url_for('login') }}", method="POST">
-            <input type="text", name="username", placeholder="username">
-            <input type="password", name="password", placeholder="password">
-            <button>Submit</button>
+            <input type="text", name="username", placeholder="username"> <br><br>
+            <input type="password", name="password", placeholder="password"> <br><br>
+            <button>Submit</button> <br><br>
         </form></div>
         <br>
-        <div class="register"><h4>REGISTER</h4>
+        <div class="register"><p style="font-family:'Serif';font-size:1.2vw;color:#9c790a;"><b>REGISTER</b></p>
         <form action="{{ url_for('register') }}", method="POST">
-            <input type="text", name="username", placeholder="username">
-            <input type="password", name="password", placeholder="password">
-            <input type="password", name="password2", placeholder="repeat password">
+            <input type="text", name="username", placeholder="username"> <br><br> 
+            <input type="password", name="password", placeholder="password"> <br><br> 
+            <input type="password", name="password2", placeholder="repeat password"> <br><br> 
             <button>Submit</button>
         </form></div>
         <br>
