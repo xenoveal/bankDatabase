@@ -6,7 +6,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
 
 app = Flask(__name__)
-condition = [True]
+condition = [False]
 
 # Check for environment variable
 if not os.getenv("DATABASE_URL"):
@@ -21,16 +21,16 @@ Session(app)
 engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
-
 @app.route("/")
-def index(try_login=False):
+def index():
     title = "Home"
+    try_login = request.args.get("try_login")
     return render_template("index.html", title=title, condition = condition[-1], try_login=try_login)
 
 @app.route("/logout")
 def logout():
     condition.append(False)
-    return index()   
+    return redirect(url_for('.index'))   
 
 @app.route("/login", methods=["POST"])
 def login():
@@ -48,11 +48,11 @@ def login():
     if(username_fill in usernames):
         if(passwords[usernames.index(username_fill)] == password_fill):
             condition.append(True)
-            return index()
+            return redirect(url_for('.index'))
         else:
-            return index(try_login=True)
+            return redirect(url_for('.index', try_login=True))
     else:
-        return index(try_login=True)
+        return redirect(url_for('.index', try_login=True))
    
 
 @app.route("/register", methods=["POST"])
@@ -63,7 +63,7 @@ def register():
     db.execute("INSERT INTO users(USERNAME, PASSWORD) VALUES (:username, :password)",
                 {"username" : username, "password" : password})
     db.commit()
-    return index()
+    return redirect(url_for('.index'))
 
 def get_values(before, after):
     for row in before:

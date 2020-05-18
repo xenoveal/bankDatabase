@@ -1,21 +1,246 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+                .modal {
+                  display: none; /* Hidden by default */
+                  position: fixed; /* Stay in place */
+                  z-index: 1; /* Sit on top */
+                  padding-top: 100px; /* Location of the box */
+                  left: 0;
+                  top: 0;
+                  width: 100%; /* Full width */
+                  height: 100%; /* Full height */
+                  overflow: auto; /* Enable scroll if needed */
+                  background-color: rgb(0,0,0); /* Fallback color */
+                  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+                }
+
+                /* Modal Content */
+                .modal-content {
+                  background-color: #fefefe;
+                  margin: auto;
+                  padding: 20px;
+                  border: 1px solid #888;
+                  width: 80%;
+                }
+
+                /* The Close Button */
+                .refClose {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+
+                .refClose:hover,
+                .refClose:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
+
+                .custClose {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+
+                .custClose:hover,
+                .custClose:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
+
+                .locClose {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+
+                .locClose:hover,
+                .locClose:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
+
+                .proClose {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+
+                .proClose:hover,
+                .proClose:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
+
+                .traClose {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+
+                .traClose:hover,
+                .traClose:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
+
+                .tranClose {
+                  color: #aaaaaa;
+                  float: right;
+                  font-size: 28px;
+                  font-weight: bold;
+                }
+
+                .tranClose:hover,
+                .tranClose:focus {
+                  color: #000;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
+
+                div.absolute {
+                position: absolute;
+                top: -2vw;
+                left: 1vw;
+                }
+                body {font-family: Arial;}
+
+                table { 
+                border-collapse: collapse; 
+                } 
+                th { 
+                    background-color:green; 
+                    Color:white; 
+                } 
+                th, td { 
+                    width:150px; 
+                    text-align:center; 
+                    border:1px solid black; 
+                    padding:5px 
+                  
+                } 
+                .table { 
+                    border-right:hidden; 
+                    margin-top: 10vw;
+                } 
+                .dbtable { 
+                    border-collapse:separate; 
+                    border-spacing:0 15px; 
+                } 
+                h1 { 
+                    color:green; 
+                } 
+
+                .addBtn {
+                  border-radius: 2px;
+                  background-color: #328736; 
+                  color: white; 
+                  border: 2px solid #4CAF50;
+                }
+
+                .addBtn:hover {
+                  background-color: #4CAF50;
+                  color: #328736;
+                }                
+
+                .tab {
+                  position: absolute;
+                  top: 5vw;
+                  left: 30vw;
+                  overflow: hidden;
+                  border: 1px solid #ccc;
+                  background-color: #71d8db;
+                }
+
+                .tab button {
+                  background-color: inherit;
+                  float: left;
+                  border: none;
+                  outline: none;
+                  cursor: pointer;
+                  padding: 14px 16px;
+                  transition: 0.3s;
+                  font-size: 17px;
+                }
+
+                .tab button:hover {
+                  background-color: #ddd;
+                }
+
+                .tab button.active {
+                  background-color: #ccc;
+                }
+
+                .tabcontent {
+                  position: absolute;
+                  top: 20vw;
+                  left: 50%;
+                  margin-right: -50%;
+                  transform: translate(-50%, -50%);
+                  display: none;
+                  padding: 6px 12px;
+                  border: 1px solid #ccc;
+                  border-top: none;
+                }
+
+                .topright {
+                  float: right;
+                  cursor: pointer;
+                  font-size: 28px;
+                }
+
+                .topright:hover {color: red;}
+            </style>
+        </head>
+
 {% extends "layout.html" %}
 
 {% block section %}
+    <div class="absolute"><h3 style="font-family:'Arial';font-size:2.5vw;color:teal;">BANK DATABASE MANAGEMENT</h3></div>
+    <body>
+    <style>
+        body {
+            background-image: url( static/Tabs.png );
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: 100% 100%;
+            background-position: fixed;
+        }
+    </style>
     {% if condition %}
 
-    <h2>Select Table</h4>
-    <div class="ref_types">
-        <h4>Ref_Types_of_Business</h4>
-        <form action="{{ url_for('ref_types') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="code", placeholder="Type_of_Business_Code">
-            <input type="text", name="desc", placeholder="Type_of_Business_Desc">
-            <button>Add/Modify</button>
-        </form>
+<body>
+
+<div class="tab">
+  <button class="tablinks" onclick="dbtab(event, 'ref_typesTab')" id="defaultOpen">Business Types</button>
+  <button class="tablinks" onclick="dbtab(event, 'customersTab')">Customers</button>
+  <button class="tablinks" onclick="dbtab(event, 'locationsTab')">Locations</button>
+  <button class="tablinks" onclick="dbtab(event, 'productsTab')">Products</button>
+  <button class="tablinks" onclick="dbtab(event, 'trans_typesTab')">Transaction Types</button>
+  <button class="tablinks" onclick="dbtab(event, 'transactionsTab')">Transactions</button>
+</div>
+
+<div id="ref_typesTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="ref_types">
+        <h4>Business Types</h4>
         <table>
             <thead>
-                <th>Type_of_Business_Code</th>
-                <th>Type_of_Business_Desc</th>
+                <th>Business Code</th>
+                <th>Business Description</th>
                 <th>DELETE</th>
             </thead>
             <tbody>
@@ -32,25 +257,48 @@
                 {% endfor %}
             </tbody>
         </table>
+            <button id="refBtn" class="addBtn">Add New</button>
+            <div id="refModal" class="modal">
+              <div class="modal-content">
+                <span class="refClose">&times;</span>
+                    <form action="{{ url_for('ref_types') }}", method="POST">
+                        <h5>Add to Database</h5>
+                        <input type="text", name="code", placeholder="Type_of_Business_Code">
+                        <input type="text", name="desc", placeholder="Type_of_Business_Desc">
+                        <button>Add</button>
+                    </form>
+              </div>
+            </div>
+            <script>
+            var rmodal = document.getElementById("refModal");
+            var rbtn = document.getElementById("refBtn");
+            var rspan = document.getElementsByClassName("refClose")[0];
+            rbtn.onclick = function() {
+              rmodal.style.display = "block";
+            }
+            rspan.onclick = function() {
+              rmodal.style.display = "none";
+            }
+            window.onclick = function(event) {
+              if (event.target == rmodal) {
+                rmodal.style.display = "none";
+              }
+            }
+            </script>
     </div>
-    <div class="customers">
+</div>
+
+<div id="customersTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="customers">
         <h4>Customers</h4>
-        <form action="{{ url_for('customers') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="id", placeholder="Customer_ID">   
-            <input type="text", name="code", placeholder="Type_of_Business_Code">
-            <input type="text", name="name", placeholder="Customer_Name">
-            <input type="text", name="address", placeholder="Customer_Address">
-            <input type="text", name="desc", placeholder="Other_Details">
-            <button>Add/Modify</button>
-        </form>
         <table>
             <thead>
-                <th>Customer_ID</th>
-                <th>Type_of_Business_Desc</th>
-                <th>Customer_Name</th>
-                <th>Customer_Address</th>
-                <th>Other_Details</th>
+                <th>Customer ID</th>
+                <th>Business Description</th>
+                <th>Customer Name</th>
+                <th>Customer Address</th>
+                <th>Other Details</th>
                 <th>DELETE</th>
             </thead>
             <tbody>
@@ -70,21 +318,49 @@
                 {% endfor %}
             </tbody>
         </table>
+        <button id="custBtn" class="addBtn">Add New</button>
+            <div id="custModal" class="modal">
+              <div class="modal-content">
+                <span class="custClose">&times;</span>
+                    <form action="{{ url_for('customers') }}", method="POST">
+                        <h5>Add to Database</h5>
+                        <input type="text", name="id", placeholder="Customer_ID">   
+                        <input type="text", name="code", placeholder="Type_of_Business_Code">
+                        <input type="text", name="name", placeholder="Customer_Name">
+                        <input type="text", name="address", placeholder="Customer_Address">
+                        <input type="text", name="desc", placeholder="Other_Details">
+                        <button>Add/Modify</button>
+                    </form>
+                 </div>
+            </div>
+            <script>
+            var cumodal = document.getElementById("custModal");
+            var cubtn = document.getElementById("custBtn");
+            var span = document.getElementsByClassName("custClose")[0];
+            cubtn.onclick = function() {
+              cumodal.style.display = "block";
+            }
+            span.onclick = function() {
+              cumodal.style.display = "none";
+            }
+            window.onclick = function(event) {
+              if (event.target == cumodal) {
+                cumodal.style.display = "none";
+              }
+            }
+            </script>
     </div>
-    <div class="locations">
+</div>
+
+<div id="locationsTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="locations">
         <h4>Locations</h4>
-        <form action="{{ url_for('locations') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="code", placeholder="Location_Code">
-            <input type="text", name="name", placeholder="Location_Name">
-            <input type="text", name="desc", placeholder="Location_Description">
-            <button>Add/Modify</button>
-        </form>
         <table>
             <thead>
-                <th>Location_Code</th>
-                <th>Location_Name</th>
-                <th>Location_Description</th>
+                <th>Location Code</th>
+                <th>Location Name</th>
+                <th>Location Description</th>
                 <th>DELETE</th>
             </thead>
             <tbody>
@@ -102,23 +378,48 @@
                 {% endfor %}
             </tbody>
         </table>
+        <button id="locBtn" class="addBtn">Add New</button>
+            <div id="locModal" class="modal">
+              <div class="modal-content">
+                <span class="locClose">&times;</span>
+                    <form action="{{ url_for('locations') }}", method="POST">
+                        <h5>Add to Database</h5>
+                        <input type="text", name="code", placeholder="Location_Code">
+                        <input type="text", name="name", placeholder="Location_Name">
+                        <input type="text", name="desc", placeholder="Location_Description">
+                        <button>Add/Modify</button>
+                    </form>
+                </div>
+            </div>
+            <script>
+            var lomodal = document.getElementById("locModal");
+            var lobtn = document.getElementById("locBtn");
+            var span = document.getElementsByClassName("locClose")[0];
+            lobtn.onclick = function() {
+              lomodal.style.display = "block";
+            }
+            span.onclick = function() {
+              lomodal.style.display = "none";
+            }
+            window.onclick = function(event) {
+              if (event.target == lomodal) {
+                lomodal.style.display = "none";
+              }
+            }
+            </script>
     </div>
-    <div class="products">
+</div>
+
+<div id="productsTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="products">
         <h4>Products</h4>
-        <form action="{{ url_for('products') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="code", placeholder="Product_ID">
-            <input type="text", name="name", placeholder="Product_Name">
-            <input type="text", name="desc", placeholder="Product_Description">
-            <input type="text", name="oth", placeholder="Other_Details">
-            <button>Add/Modify</button>
-        </form>
         <table>
             <thead>
-                <th>Product_ID</th>
-                <th>Product_Name</th>
-                <th>Product_Description</th>
-                <th>Other_Details</th>
+                <th>Product ID</th>
+                <th>Product Name</th>
+                <th>Product Description</th>
+                <th>Other Details</th>
                 <th>DELETE</th>
             </thead>
             <tbody>
@@ -137,19 +438,47 @@
                 {% endfor %}
             </tbody>
         </table>
+        <button id="proBtn" class="addBtn">Add New</button>
+            <div id="proModal" class="modal">
+              <div class="modal-content">
+                <span class="proClose">&times;</span>
+                    <form action="{{ url_for('products') }}", method="POST">
+                        <h5>Add to Database</h5>
+                        <input type="text", name="code", placeholder="Product_ID">
+                        <input type="text", name="name", placeholder="Product_Name">
+                        <input type="text", name="desc", placeholder="Product_Description">
+                        <input type="text", name="oth", placeholder="Other_Details">
+                        <button>Add/Modify</button>
+                    </form>
+                </div>
+            </div>
+            <script>
+            var prmodal = document.getElementById("proModal");
+            var prbtn = document.getElementById("proBtn");
+            var span = document.getElementsByClassName("proClose")[0];
+            prbtn.onclick = function() {
+              prmodal.style.display = "block";
+            }
+            span.onclick = function() {
+              prmodal.style.display = "none";
+            }
+            window.onclick = function(event) {
+              if (event.target == prmodal) {
+                prmodal.style.display = "none";
+              }
+            }
+            </script>
     </div>
-    <div class="trans_types">
+</div>
+
+<div id="trans_typesTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="trans_types">
         <h4>Ref_Types_of_Business</h4>
-        <form action="{{ url_for('transaction_types') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="code", placeholder="Transaction_Type_Code">
-            <input type="text", name="name", placeholder="Transaction_Type_Descriptipn">
-            <button>Add/Modify</button>
-        </form>
         <table>
             <thead>
-                <th>Transaction_Type_Code</th>
-                <th>Transaction_Type_Descriptipn</th>
+                <th>Transaction Code</th>
+                <th>Transaction Descriptipn</th>
                 <th>DELETE</th>
             </thead>
             <tbody>
@@ -166,22 +495,41 @@
                 {% endfor %}
             </tbody>
         </table>
+        <button id="traBtn" class="addBtn">Add New</button>
+            <div id="traModal" class="modal">
+              <div class="modal-content">
+                <span class="traClose">&times;</span>
+                    <form action="{{ url_for('transaction_types') }}", method="POST">
+                        <h5>Add to Database</h5>
+                        <input type="text", name="code", placeholder="Transaction_Type_Code">
+                        <input type="text", name="name", placeholder="Transaction_Type_Descriptipn">
+                        <button>Add/Modify</button>
+                    </form>
+                </div>
+            </div>
+            <script>
+            var tmodal = document.getElementById("traModal");
+            var tbtn = document.getElementById("traBtn");
+            var span = document.getElementsByClassName("traClose")[0];
+            tbtn.onclick = function() {
+              tmodal.style.display = "block";
+            }
+            span.onclick = function() {
+              tmodal.style.display = "none";
+            }
+            window.onclick = function(event) {
+              if (event.target == tmodal) {
+                tmodal.style.display = "none";
+              }
+            }
+            </script>
     </div>
-    <div class="transactions">
+</div>
+
+<div id="transactionsTab" class="tabcontent">
+  <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
+  <div class="transactions">
         <h4>Transactions</h4>
-        <form action="{{ url_for('transactions') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="trans_id", placeholder="Transaction_ID">
-            <input type="text", name="cust_id", placeholder="Customer_ID">
-            <input type="text", name="loc_code", placeholder="Location_Code">
-            <input type="text", name="prod_id", placeholder="Product_ID">
-            <input type="text", name="type_code", placeholder="Transactions_Type_Code">
-            <input type="text", name="trans_date", placeholder="Transaction_Date (yyyy-mm-dd)">
-            <input type="text", name="amount", placeholder="Amount">
-            <input type="text", name="count", placeholder="Count">
-            <input type="text", name="oth", placeholder="Other_Details">
-            <button>Add/Modify</button>
-        </form>
         <table>
             <thead>
                 <th>Transaction_ID</th>
@@ -216,6 +564,65 @@
                 {% endfor %}
             </tbody>
         </table>
+        <button id="tranBtn" class="addBtn">Add New</button>
+            <div id="tranModal" class="modal">
+              <div class="modal-content">
+                <span class="tranClose">&times;</span>
+                    <form action="{{ url_for('transactions') }}", method="POST">
+                        <h5>Add to Database</h5>
+                        <input type="text", name="trans_id", placeholder="Transaction_ID">
+                        <input type="text", name="cust_id", placeholder="Customer_ID">
+                        <input type="text", name="loc_code", placeholder="Location_Code">
+                        <input type="text", name="prod_id", placeholder="Product_ID">
+                        <input type="text", name="type_code", placeholder="Transactions_Type_Code">
+                        <input type="text", name="trans_date", placeholder="Transaction_Date (yyyy-mm-dd)">
+                        <input type="text", name="amount", placeholder="Amount">
+                        <input type="text", name="count", placeholder="Count">
+                        <input type="text", name="oth", placeholder="Other_Details">
+                        <button>Add/Modify</button>
+                    </form>
+                </div>
+            </div>
+            <script>
+            var trmodal = document.getElementById("tranModal");
+            var trbtn = document.getElementById("tranBtn");
+            var span = document.getElementsByClassName("tranClose")[0];
+            trbtn.onclick = function() {
+              trmodal.style.display = "block";
+            }
+            span.onclick = function() {
+              trmodal.style.display = "none";
+            }
+            window.onclick = function(event) {
+              if (event.target == trmodal) {
+                trmodal.style.display = "none";
+              }
+            }
+            </script>                    
     </div>
-    {% endif %}
+</div>
+
+<script>
+function dbtab(evt, databaseTab) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(databaseTab).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+
+// Get the element with id="defaultOpen" and click on it
+document.getElementById("defaultOpen").click();
+</script>
+   
+</body>
+</html> 
+
+{% endif %}
 {% endblock %}

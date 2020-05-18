@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>{{ title }}</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+        a:link {
+  		  text-decoration: none;
+		}
+
+		a:visited {
+  		  text-decoration: none;
+		}	
+		div.absoluteHome {
+  			position: fixed;
+  			top: 2px;
+  			right: 400px;
+		}
+		div.absoluteDB {
+  			position: fixed;
+  			top: 2px;
+  			right: 70px;
+		}
+		</style>
     </head>
     <body>
         <nav>
-            <li><a href="{{ url_for('index') }}">Home</a></li>
-            <li><a href="{{ url_for('more') }}">Access Database</a></li>
+            <div class="absoluteHome"><p style="font-family:'Calibri'"><a href="{{ url_for('index') }}" h1 style="font-size:2vw">Home</h1></a></p></div>
+            <div class="absoluteDB"><p style="font-family:'Calibri'"><a href="{{ url_for('more') }}" h1 style="font-size:2vw">Access Database</h1></a></p></div>
         </nav>
-        <h1>{{ title }}</h1>
         {% block section %}{% endblock %}
     </body>
 </html>
