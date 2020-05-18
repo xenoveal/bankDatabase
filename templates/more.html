@@ -257,7 +257,6 @@
                 {% endfor %}
             </tbody>
         </table>
-<<<<<<< HEAD
             <button id="refBtn" class="addBtn">Add New</button>
             <div id="refModal" class="modal">
               <div class="modal-content">
@@ -300,27 +299,6 @@
                 <th>Customer Name</th>
                 <th>Customer Address</th>
                 <th>Other Details</th>
-=======
-    </div>
-    <div class="customers">
-        <h4>Customers</h4>
-        <form action="{{ url_for('customers') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="id", placeholder="Customer_ID">   
-            <input type="text", name="code", placeholder="Type_of_Business_Code">
-            <input type="text", name="name", placeholder="Customer_Name">
-            <input type="text", name="address", placeholder="Customer_Address">
-            <input type="text", name="desc", placeholder="Other_Details">
-            <button>Add/Modify</button>
-        </form>
-        <table>
-            <thead>
-                <th>Customer_ID</th>
-                <th>Type_of_Business_Desc</th>
-                <th>Customer_Name</th>
-                <th>Customer_Address</th>
-                <th>Other_Details</th>
->>>>>>> master
                 <th>DELETE</th>
             </thead>
             <tbody>
@@ -340,7 +318,6 @@
                 {% endfor %}
             </tbody>
         </table>
-<<<<<<< HEAD
         <button id="custBtn" class="addBtn">Add New</button>
             <div id="custModal" class="modal">
               <div class="modal-content">
@@ -384,23 +361,6 @@
                 <th>Location Code</th>
                 <th>Location Name</th>
                 <th>Location Description</th>
-=======
-    </div>
-    <div class="locations">
-        <h4>Locations</h4>
-        <form action="{{ url_for('locations') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="code", placeholder="Location_Code">
-            <input type="text", name="name", placeholder="Location_Name">
-            <input type="text", name="desc", placeholder="Location_Description">
-            <button>Add/Modify</button>
-        </form>
-        <table>
-            <thead>
-                <th>Location_Code</th>
-                <th>Location_Name</th>
-                <th>Location_Description</th>
->>>>>>> master
                 <th>DELETE</th>
             </thead>
             <tbody>
@@ -418,7 +378,6 @@
                 {% endfor %}
             </tbody>
         </table>
-<<<<<<< HEAD
         <button id="locBtn" class="addBtn">Add New</button>
             <div id="locModal" class="modal">
               <div class="modal-content">
@@ -461,25 +420,6 @@
                 <th>Product Name</th>
                 <th>Product Description</th>
                 <th>Other Details</th>
-=======
-    </div>
-    <div class="products">
-        <h4>Products</h4>
-        <form action="{{ url_for('products') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="code", placeholder="Product_ID">
-            <input type="text", name="name", placeholder="Product_Name">
-            <input type="text", name="desc", placeholder="Product_Description">
-            <input type="text", name="oth", placeholder="Other_Details">
-            <button>Add/Modify</button>
-        </form>
-        <table>
-            <thead>
-                <th>Product_ID</th>
-                <th>Product_Name</th>
-                <th>Product_Description</th>
-                <th>Other_Details</th>
->>>>>>> master
                 <th>DELETE</th>
             </thead>
             <tbody>
@@ -498,7 +438,6 @@
                 {% endfor %}
             </tbody>
         </table>
-<<<<<<< HEAD
         <button id="proBtn" class="addBtn">Add New</button>
             <div id="proModal" class="modal">
               <div class="modal-content">
@@ -540,21 +479,6 @@
             <thead>
                 <th>Transaction Code</th>
                 <th>Transaction Descriptipn</th>
-=======
-    </div>
-    <div class="trans_types">
-        <h4>Ref_Types_of_Business</h4>
-        <form action="{{ url_for('transaction_types') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="code", placeholder="Transaction_Type_Code">
-            <input type="text", name="name", placeholder="Transaction_Type_Descriptipn">
-            <button>Add/Modify</button>
-        </form>
-        <table>
-            <thead>
-                <th>Transaction_Type_Code</th>
-                <th>Transaction_Type_Descriptipn</th>
->>>>>>> master
                 <th>DELETE</th>
             </thead>
             <tbody>
@@ -571,7 +495,6 @@
                 {% endfor %}
             </tbody>
         </table>
-<<<<<<< HEAD
         <button id="traBtn" class="addBtn">Add New</button>
             <div id="traModal" class="modal">
               <div class="modal-content">
@@ -607,24 +530,6 @@
   <span onclick="this.parentElement.style.display='none'" class="topright">&times</span>
   <div class="transactions">
         <h4>Transactions</h4>
-=======
-    </div>
-    <div class="transactions">
-        <h4>Transactions</h4>
-        <form action="{{ url_for('transactions') }}", method="POST">
-            <h5>Add to Database</h5>
-            <input type="text", name="trans_id", placeholder="Transaction_ID">
-            <input type="text", name="cust_id", placeholder="Customer_ID">
-            <input type="text", name="loc_code", placeholder="Location_Code">
-            <input type="text", name="prod_id", placeholder="Product_ID">
-            <input type="text", name="type_code", placeholder="Transactions_Type_Code">
-            <input type="text", name="trans_date", placeholder="Transaction_Date (yyyy-mm-dd)">
-            <input type="text", name="amount", placeholder="Amount">
-            <input type="text", name="count", placeholder="Count">
-            <input type="text", name="oth", placeholder="Other_Details">
-            <button>Add/Modify</button>
-        </form>
->>>>>>> master
         <table>
             <thead>
                 <th>Transaction_ID</th>
@@ -659,7 +564,6 @@
                 {% endfor %}
             </tbody>
         </table>
-<<<<<<< HEAD
         <button id="tranBtn" class="addBtn">Add New</button>
             <div id="tranModal" class="modal">
               <div class="modal-content">
@@ -721,8 +625,4 @@ document.getElementById("defaultOpen").click();
 </html> 
 
 {% endif %}
-=======
-    </div>
-    {% endif %}
->>>>>>> master
 {% endblock %}
